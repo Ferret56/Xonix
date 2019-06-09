@@ -13,6 +13,7 @@ private:
 public:
 	GraphicalShell(const String path);
 	~GraphicalShell();
+	void setPosition(const float x, const float y);
 
 	Sprite getSprite();
 };
