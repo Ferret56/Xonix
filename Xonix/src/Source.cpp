@@ -1,7 +1,9 @@
-
-
+#include "Game.h"
 
 int main() {
-	return 0;
+	Game game;
+	game.run();
 
+	system("pause");
+	return 0;
 }
