@@ -1,8 +1,11 @@
 #include "Drawer.h"
+#include "iostream"
+using namespace std;
 
 Drawer::Drawer(const String path){
 	this->image = new GraphicalShell(path);
 	x = y = 500;
+	dx = dy = 0;
 	setPosition(x, y);
 	
 }
@@ -13,7 +16,7 @@ void Drawer::setPosition(const float x, const float y){
 	this->image->setPosition(x, y);
 }
 
-void Drawer::update() {
+void Drawer::update() {	
 	if (Keyboard::isKeyPressed(Keyboard::Right)) {
 		dx = 1;
 		dy = 0;
@@ -33,6 +36,10 @@ void Drawer::update() {
 
 	x += dx;
 	y += dy;
+	if (x < 0) x = 0;
+	if (y < 0) y = 0;
+	
+	std::cout << x << std::endl;
 
 	setPosition(x, y);
 

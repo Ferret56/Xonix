@@ -1,11 +1,13 @@
 #include "Game.h"
 
-Game::Game() {
-	windowSize.x = 1920;
-	windowSize.y = 1080;
-	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix");
+Game::Game() {	
+	windowSize.x = 1600;
+	windowSize.y = 900;
+	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix",Style::Fullscreen);
 	background = new Background("src/images/background/space.png");
 	drawer = new Drawer("src/images/drawers/bird.png");
+	field = new Field();
+	
 }
 
 Game::~Game() {}
@@ -31,7 +33,8 @@ void Game::render() {
 	window->clear();
 	//TODO
 	window->draw(background->getImage());
-	window->draw(drawer->getSprite());
+	field->draw(window);
+	window->draw(drawer->getSprite());	
 	window->display();
 }
 void Game::run() {
@@ -41,3 +44,8 @@ void Game::run() {
 		render();
 	}
 }
+
+Vector2f Game::getWindowSize() {
+	return windowSize;
+}
+

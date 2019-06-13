@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Background.h"
 #include "Drawer.h"
+#include "Field.h"
 using namespace sf;
 
 class Game {
@@ -10,14 +11,15 @@ private:
 	Vector2f      windowSize;     //window size
 	Background*   background;    //background image
 	Drawer*       drawer;       //drawer
-
+	Field*        field;       //field
 	void processEvents();
 	void update();
 	void render();
 
-public:
+public:	
 	Game();
 	~Game();
 	void run();
+	Vector2f getWindowSize();
 };
 
