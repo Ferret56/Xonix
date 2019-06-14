@@ -1,6 +1,7 @@
 #pragma once
 #include "GraphicalShell.h"
 #include "Plate.h"
+#include "Enemy.h"
 #include "String"
 #include <vector>
 
@@ -10,11 +11,14 @@ using namespace std;
 
 class Field {
 private:	
-	pair<int, Plate*> **field;
+	pair<int, Plate*>   **field;
+	Enemy* enemy;
+
 	
 public:
 	Field();
 	void generateField();
 	void draw(RenderWindow* window);
+	void update();
 
 };

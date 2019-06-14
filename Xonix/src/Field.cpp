@@ -1,13 +1,13 @@
 #include "Field.h"
 
 
-Field::Field() {
+Field::Field(){
 	field = new pair<int, Plate*>*[MAX_WIDTH];
 	for (int i = 0; i < MAX_WIDTH; ++i) {
 		field[i] = new pair<int, Plate*>[MAX_HEIGHT];
 	}
-
 	generateField();
+	enemy = new Enemy("src/images/drawers/enemy.png");
 }
 
 void Field::draw(RenderWindow* window) {
@@ -16,7 +16,23 @@ void Field::draw(RenderWindow* window) {
 				window->draw(field[i][j].second->getSprite());
 			}
 		}
-	}
+	window->draw(this->enemy->getSprite());
+}
+
+void Field::update() {
+	//TODO
+	this->enemy->update();
+	for (int i = 0; i < MAX_WIDTH; ++i) {
+		for (int j = 0; j < MAX_HEIGHT; ++j) {
+			if (field[i][j].second->getSprite().getGlobalBounds().intersects(this->enemy->getSprite().getGlobalBounds())
+			&& field[i][j].first == 1) {
+				this->enemy->changeDirection();
+			}
+		}
+	}	
+}
+
+
 
 /*1 for the border
 0 for the field*/
@@ -37,3 +53,7 @@ void Field::generateField() {
 		y_position += 20;
 	}
 }
+
+
+
+

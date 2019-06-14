@@ -1,9 +1,9 @@
 #include "Game.h"
 
-Game::Game() {	
-	windowSize.x = 1600;
-	windowSize.y = 900;
-	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix",Style::Fullscreen);
+Game::Game() {
+	windowSize.x = 1280;
+	windowSize.y = 720;
+	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix");	
 	background = new Background("src/images/background/space.png");
 	drawer = new Drawer("src/images/drawers/bird.png");
 	field = new Field();
@@ -28,6 +28,7 @@ void Game::processEvents() {
 void Game::update() {
 	//TODO
 	this->drawer->update();
+	this->field->update();
 }
 void Game::render() {
 	window->clear();
