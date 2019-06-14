@@ -13,6 +13,12 @@ void GraphicalShell::setPosition(const float x, const float y) {
 	this->sprite.setPosition(x, y);
 }
 
+void GraphicalShell::moveTo(const float x, const float y) {
+	Vector2f vector(x, y);
+	this->sprite.move(vector);
+}
+
+
 Sprite GraphicalShell::getSprite() { return this->sprite; }
 
 

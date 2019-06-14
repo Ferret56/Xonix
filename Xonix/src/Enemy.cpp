@@ -9,8 +9,8 @@ Enemy::Enemy(const String path) {
 	x = 800;
 	y = 600;
 	dx = dy = -1;
-	setPosition(x, y);
-	angle = 135;
+	speed = 0.1;
+	setPosition(x, y);	
 }
 Enemy::~Enemy() {
 	delete this->image;
@@ -23,35 +23,17 @@ void Enemy::setPosition(const float x, const float y) {
 	this->image->setPosition(x, y);
 }
 
-void Enemy::update() {
+void Enemy::update(const float time) {
 	//srand(NULL);
+	//dx = speed;
+	//dy = speed;
 	x += dx;
-	y += dy;	
-
+	y += dy;
 	setPosition(x, y);
 }
 
 void Enemy::changeDirection(){	
-	if (angle >= 90 && angle <= 180) {
-		angle = rand() % 90;
-		dx = 1;
-		dy = -1;
-		x += dx;
-		y += dy;
-		setPosition(x, y);
-		return;
-	}
-
-	if (angle >= 180 && angle <= 270) {
-		angle = rand() % 270;
-		dx = -1;
-		dy = 1;
-		x += dx;
-		y += dy;
-		setPosition(x, y);
-		return;
-
-	}
+	
 
 	setPosition(x, y);
 }

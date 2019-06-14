@@ -14,6 +14,7 @@ public:
 	GraphicalShell(const String path);
 	~GraphicalShell();
 	void setPosition(const float x, const float y);
+	void moveTo(const float x, const float y);
 
 	Sprite getSprite();
 };

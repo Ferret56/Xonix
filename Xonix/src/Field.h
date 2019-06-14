@@ -19,6 +19,6 @@ public:
 	Field();
 	void generateField();
 	void draw(RenderWindow* window);
-	void update();
+	void update(const float time);
 
 };

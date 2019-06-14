@@ -12,6 +12,10 @@ private:
 	Background*   background;    //background image
 	Drawer*       drawer;       //drawer
 	Field*        field;       //field
+	
+	Clock clock;
+	float time;
+	
 	void processEvents();
 	void update();
 	void render();

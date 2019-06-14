@@ -1,8 +1,8 @@
 #include "Game.h"
 
 Game::Game() {
-	windowSize.x = 1280;
-	windowSize.y = 720;
+	windowSize.x = 1600;
+	windowSize.y = 900;
 	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix");	
 	background = new Background("src/images/background/space.png");
 	drawer = new Drawer("src/images/drawers/bird.png");
@@ -27,8 +27,11 @@ void Game::processEvents() {
 
 void Game::update() {
 	//TODO
-	this->drawer->update();
-	this->field->update();
+	time = clock.getElapsedTime().asMicroseconds();
+	clock.restart();
+	time = time / 500;
+	this->drawer->update(time);
+	this->field->update(time);
 }
 void Game::render() {
 	window->clear();

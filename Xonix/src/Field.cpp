@@ -19,9 +19,9 @@ void Field::draw(RenderWindow* window) {
 	window->draw(this->enemy->getSprite());
 }
 
-void Field::update() {
+void Field::update(const float time) {
 	//TODO
-	this->enemy->update();
+	this->enemy->update(time);
 	for (int i = 0; i < MAX_WIDTH; ++i) {
 		for (int j = 0; j < MAX_HEIGHT; ++j) {
 			if (field[i][j].second->getSprite().getGlobalBounds().intersects(this->enemy->getSprite().getGlobalBounds())
