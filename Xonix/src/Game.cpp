@@ -31,7 +31,7 @@ void Game::update() {
 	clock.restart();
 	time = time / 800;
 	timer += time;
-	//if(timer > 1000){
+	//if(timer > 250){
 		this->enemy->update(time);
 	//	timer = 0;
 	//}	

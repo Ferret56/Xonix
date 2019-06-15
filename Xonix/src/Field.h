@@ -4,8 +4,8 @@
 #include "String"
 #include <vector>
 
-#define MAX_HEIGHT 25
-#define MAX_WIDTH 17
+#define LINES 25
+#define ROWS 17
 
 using namespace std;
 
@@ -17,6 +17,7 @@ public:
 	Field();
 	void generateField();
 	void draw(RenderWindow* window);
+	pair <int, Plate*> getPlateByCoordinates(const int i, const int j);
 	void update(const float time);
 
 };

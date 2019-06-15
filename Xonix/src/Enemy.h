@@ -6,8 +6,8 @@
 class Enemy {
 private:	
 	GraphicalShell*   image;
-	float             x;	            // x position
-	float             y;               // y position
+	float             x;	            // x position on the field(from (0) to LINES)
+	float             y;               // y position in the field(from (0) to ROWS)
 	float             dx;             // x offset
 	float             dy;            // y offset
 	float             speed;        //Enemy's speed
@@ -16,7 +16,7 @@ private:
 
 public:
 	Enemy(const String path,  Field& field);	
-	void setPosition( float x,  float y);
+	void setPosition(const float x, const float y);
 	void update(const float time);
 	void changeDirection(const float time);	
 	~Enemy();
