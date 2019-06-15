@@ -19,6 +19,7 @@ public:
 	void setPosition(const float x, const float y);
 	void update(const float time);
 	void changeDirection(const float time);	
+	void moveTo(const float x, const float y);
 	~Enemy();
 	Sprite getSprite();
 };

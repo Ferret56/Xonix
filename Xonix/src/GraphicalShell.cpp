@@ -15,7 +15,7 @@ void GraphicalShell::setPosition(const float x, const float y) {
 
 void GraphicalShell::moveTo(const float x, const float y) {
 	Vector2f vector(x, y);
-	this->sprite.move(vector);
+	this->sprite.move(x, y);
 }
 
 

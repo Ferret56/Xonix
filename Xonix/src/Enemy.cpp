@@ -30,16 +30,16 @@ void Enemy::setPosition(const float x1, const float y1) {
 
 void Enemy::update(const float time) {
 	//setPosition(x + dx, y + dy);
-	setPosition(x + dx, y);
+	setPosition(x + dx/10, y);
 	std::cout << "\t\t" << x << " " << y << std::endl;
 	if (field->getPlateByCoordinates(y, x).first == 1) {
 		dx = -dx;
-		setPosition(x + dx, y);
+		setPosition(x + dx/10, y);
 	}
-	setPosition(x, y + dy);
+	setPosition(x, y + dy/10);
 	if (field->getPlateByCoordinates(y, x).first == 1) {
 		dy = -dy;
-		setPosition(x, y + dy);
+		setPosition(x, y + dy/10);
 	}
 }
 
@@ -50,6 +50,11 @@ void Enemy::changeDirection(const float time){
 	//dirVector.x = -dirVector.x;
 	//dirVector.y = 1;
 }
+
+void Enemy::moveTo(const float x, const float y) {
+	this->image->moveTo(x, y);
+}
+
 
 	
 

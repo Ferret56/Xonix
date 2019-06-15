@@ -12,7 +12,7 @@ Field::Field(){
 void Field::draw(RenderWindow* window) {
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
-				if(field[i][j].first == 0)
+				//if(field[i][j].first == 0)
 				  window->draw(field[i][j].second->getSprite());
 			}
 		}	

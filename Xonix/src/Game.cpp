@@ -29,11 +29,11 @@ void Game::update() {
 	//TODO
 	time = clock.getElapsedTime().asMicroseconds();
 	clock.restart();
-	time = time / 800;
+	time = time / 500;
 	timer += time;
-	//if(timer > 250){
+	//if(timer > 150){
 		this->enemy->update(time);
-	//	timer = 0;
+		//timer = 0;
 	//}	
 	this->drawer->update(time);
 	this->field->update(time);
