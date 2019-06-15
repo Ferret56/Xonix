@@ -3,6 +3,7 @@
 #include "Background.h"
 #include "Drawer.h"
 #include "Field.h"
+#include "Enemy.h"
 using namespace sf;
 
 class Game {
@@ -12,9 +13,11 @@ private:
 	Background*   background;    //background image
 	Drawer*       drawer;       //drawer
 	Field*        field;       //field
-	
+	Enemy*        enemy;      //enemy
+
 	Clock clock;
 	float time;
+	float timer;
 	
 	void processEvents();
 	void update();

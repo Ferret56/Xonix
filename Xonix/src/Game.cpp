@@ -5,9 +5,9 @@ Game::Game() {
 	windowSize.y = 900;
 	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix");	
 	background = new Background("src/images/background/space.png");
-	drawer = new Drawer("src/images/drawers/bird.png");
+	drawer = new Drawer("src/images/drawers/bird.png");	
 	field = new Field();
-	
+	enemy = new Enemy("src/images/drawers/enemy.png", *field);	
 }
 
 Game::~Game() {}
@@ -29,15 +29,22 @@ void Game::update() {
 	//TODO
 	time = clock.getElapsedTime().asMicroseconds();
 	clock.restart();
-	time = time / 500;
+	time = time / 800;
+	timer += time;
+	//if(timer > 1000){
+		this->enemy->update(time);
+	//	timer = 0;
+	//}	
 	this->drawer->update(time);
 	this->field->update(time);
+	
 }
 void Game::render() {
 	window->clear();
 	//TODO
 	window->draw(background->getImage());
 	field->draw(window);
+	window->draw(enemy->getSprite());
 	window->draw(drawer->getSprite());	
 	window->display();
 }
