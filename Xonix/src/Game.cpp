@@ -4,7 +4,7 @@ Game::Game() {
 	windowSize.x = 1600;
 	windowSize.y = 900;
 	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix", Style::Fullscreen);	
-	background = new Background("src/images/background/space.png");
+	background = new Background("src/images/background/space1.png");
 	field = new Field();
 	drawer = new Drawer("src/images/drawers/bird1.png",*field);	
 	enemy = new Enemy("src/images/drawers/enemy.png", *field);

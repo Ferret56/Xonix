@@ -9,7 +9,7 @@ Drawer::Drawer(const String path, Field& field){
 	this->field = &field;
 	this->is_on_the_field = false;	
 	this->image->getSprite().setOrigin(15, 10);
-	this->target = 15;
+	this->target = 50;
 	x = 400;
 	y = 400;
 	dx = dy = 0;
