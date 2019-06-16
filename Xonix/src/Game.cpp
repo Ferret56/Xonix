@@ -7,7 +7,9 @@ Game::Game() {
 	background = new Background("src/images/background/space.png");
 	field = new Field();
 	drawer = new Drawer("src/images/drawers/bird1.png",*field);	
-	enemy = new Enemy("src/images/drawers/enemy.png", *field);	
+	enemy = new Enemy("src/images/drawers/enemy.png", *field);
+	String start = " Welcome to the game!.\nPress ENTER to start.";
+	startMessage = new Message(start, "src/fonts/Main.ttf", 100, 350, 250);
 }
 
 Game::~Game() {}
@@ -48,6 +50,7 @@ void Game::render() {
 	field->draw(window);
 	window->draw(enemy->getSprite());
 	window->draw(drawer->getSprite());	
+	startMessage->show(window);
 	window->display();
 }
 void Game::run() {

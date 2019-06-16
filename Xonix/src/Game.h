@@ -4,6 +4,8 @@
 #include "Drawer.h"
 #include "Field.h"
 #include "Enemy.h"
+#include "Message.h"
+
 using namespace sf;
 
 class Game {
@@ -14,6 +16,8 @@ private:
 	Drawer*       drawer;       //drawer
 	Field*        field;       //field
 	Enemy*        enemy;      //enemy
+	Message*      startMessage;
+	
 
 	Clock clock;
 	float time;
