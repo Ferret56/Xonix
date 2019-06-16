@@ -5,6 +5,7 @@ GraphicalShell::GraphicalShell(const String path){
 	this->path = path;
 	texture.loadFromFile(path);
 	sprite.setTexture(texture);	
+	
 }
 
 GraphicalShell::~GraphicalShell() {}
@@ -19,6 +20,8 @@ void GraphicalShell::moveTo(const float x, const float y) {
 }
 
 
-Sprite GraphicalShell::getSprite() { return this->sprite; }
+
+
+Sprite& GraphicalShell::getSprite() { return this->sprite; }
 
 

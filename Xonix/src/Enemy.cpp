@@ -28,8 +28,7 @@ void Enemy::setPosition(const float x1, const float y1) {
 	this->y = y1;	
 }
 
-void Enemy::update(const float time) {
-	//setPosition(x + dx, y + dy);
+void Enemy::update(const float time) {	
 	setPosition(x + dx/10, y);
 	std::cout << "\t\t" << x << " " << y << std::endl;
 	if (field->getPlateByCoordinates(y, x).first == 1) {
@@ -41,6 +40,8 @@ void Enemy::update(const float time) {
 		dy = -dy;
 		setPosition(x, y + dy/10);
 	}
+
+	
 }
 
 
@@ -52,7 +53,7 @@ void Enemy::changeDirection(const float time){
 }
 
 void Enemy::moveTo(const float x, const float y) {
-	this->image->moveTo(x, y);
+	this->image->moveTo(600 + 20 * x, 200 + 20 * y);
 }
 
 
@@ -60,7 +61,7 @@ void Enemy::moveTo(const float x, const float y) {
 
 
 
-Sprite Enemy::getSprite() {
+Sprite& Enemy::getSprite() {
 	return this->image->getSprite();
 }
 

@@ -18,6 +18,7 @@ public:
 	void generateField();
 	void draw(RenderWindow* window);
 	pair <int, Plate*> getPlateByCoordinates(const int i, const int j);
+	pair<int, Plate*>** getField();
 	void update(const float time);
 
 };

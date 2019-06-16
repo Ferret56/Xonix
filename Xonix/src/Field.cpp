@@ -12,8 +12,8 @@ Field::Field(){
 void Field::draw(RenderWindow* window) {
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
-				//if(field[i][j].first == 0)
-				  window->draw(field[i][j].second->getSprite());
+				if(field[i][j].first == 0)
+				     window->draw(field[i][j].second->getSprite());
 			}
 		}	
 }
@@ -21,6 +21,11 @@ void Field::draw(RenderWindow* window) {
 pair<int, Plate*> Field::getPlateByCoordinates(const int i, const int j) {
 	return this->field[i][j];
 }
+
+pair<int, Plate*>** Field::getField() {
+	return field;
+}
+
 
 
 void Field::update(const float time) {

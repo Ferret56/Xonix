@@ -5,8 +5,8 @@ Game::Game() {
 	windowSize.y = 900;
 	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix");	
 	background = new Background("src/images/background/space.png");
-	drawer = new Drawer("src/images/drawers/bird.png");	
 	field = new Field();
+	drawer = new Drawer("src/images/drawers/bird1.png",*field);	
 	enemy = new Enemy("src/images/drawers/enemy.png", *field);	
 }
 
@@ -33,7 +33,7 @@ void Game::update() {
 	timer += time;
 	//if(timer > 150){
 		this->enemy->update(time);
-		//timer = 0;
+	//    timer = 0;
 	//}	
 	this->drawer->update(time);
 	this->field->update(time);

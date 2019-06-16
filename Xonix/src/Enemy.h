@@ -21,5 +21,5 @@ public:
 	void changeDirection(const float time);	
 	void moveTo(const float x, const float y);
 	~Enemy();
-	Sprite getSprite();
+	Sprite& getSprite();
 };
