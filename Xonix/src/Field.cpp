@@ -12,8 +12,8 @@ Field::Field(){
 void Field::draw(RenderWindow* window) {
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
-				if(field[i][j].first == 0)
-				     window->draw(field[i][j].second->getSprite());
+				if(field[i][j].first == Plate::FREE)
+				     window->draw(field[i][j].second->getSprite());						
 			}
 		}	
 }
@@ -45,14 +45,14 @@ void Field::update(const float time) {
 void Field::generateField() {	
 	float x_position = 600;
 	float y_position = 200;
-	int type = 0;
+	int status = Plate::FREE;
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
 			if (i == 0 || i == LINES - 1 || j == 0 || j == ROWS - 1)
-				type = 1;						
+				status = Plate::BORDER;						
 			else
-				type = 0;
-			field[i][j] = make_pair(type, new Plate("src/images/field/solid.png", x_position, y_position));			
+				status = Plate::FREE;
+			field[i][j] = make_pair(status, new Plate("src/images/field/solid.png", x_position, y_position));			
 			x_position += 20;
 		}
 		x_position = 600;  

@@ -31,14 +31,17 @@ void Enemy::setPosition(const float x1, const float y1) {
 void Enemy::update(const float time) {	
 	setPosition(x + dx/10, y);
 	std::cout << "\t\t" << x << " " << y << std::endl;
-	if (field->getPlateByCoordinates(y, x).first == 1) {
+	if (field->getPlateByCoordinates(y, x).first == Plate::BORDER) {
 		dx = -dx;
 		setPosition(x + dx/10, y);
 	}
 	setPosition(x, y + dy/10);
-	if (field->getPlateByCoordinates(y, x).first == 1) {
+	if (field->getPlateByCoordinates(y, x).first == Plate::BORDER) {
 		dy = -dy;
 		setPosition(x, y + dy/10);
+	}
+	if (field->getPlateByCoordinates(y, x).first == Plate::CAPTURE) {
+		setPosition(0, 0);
 	}
 
 	

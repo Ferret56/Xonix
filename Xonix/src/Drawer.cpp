@@ -7,7 +7,7 @@ using namespace std;
 Drawer::Drawer(const String path, Field& field){
 	this->image = new GraphicalShell(path);		
 	this->field = &field;
-	x = 500;
+	x = 400;
 	y = 200;
 	dx = dy = 0;
 	speed = 0.1;
@@ -30,23 +30,23 @@ void Drawer::moveTo(const float x, const float y) {
 void Drawer::update(const float time) {	
 	
 	if (Keyboard::isKeyPressed(Keyboard::Right)) {
-		dx = speed;
+		dx = speed;		
 		dy = 0;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Left)) {
-		dx = -speed;
+		dx = -speed;		
 		dy = 0;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Up)) {
 		dx = 0;
-		dy = -speed;
+		dy = -speed;		
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Down)) {
 		dx = 0;
-		dy = speed;
+		dy = speed;		
 	}
 
-	x += dx * time;
+	x += dx  * time;
 	y += dy * time;
 	if (x < 0) x = 0;
 	if (y < 0) y = 0;
@@ -60,11 +60,10 @@ void Drawer::update(const float time) {
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
 			Vector2f vec = field[i][j].second->getSprite().getPosition();
-			if (this->image->getSprite().getGlobalBounds().contains(vec.x+10, vec.y+10)) {
-				field[i][j].first = 1;
+			if(this->image->getSprite().getGlobalBounds().contains(vec.x + 10 , vec.y + 10)){
+				field[i][j].first = Plate::CAPTURE;
 				break;
-			}
-
+			}			
 		}
 	}
 	
