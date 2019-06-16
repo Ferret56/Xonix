@@ -12,7 +12,8 @@ private:
 	float        dy;         // y offset
 	float        speed;     //Drawer's speed
 	Field*       field;    //Field
-
+	int          target;  // Àmount of field to be deleted(%)
+	
 	bool is_on_the_field;
 public:
 	Drawer(const String path, Field& field);
@@ -20,6 +21,7 @@ public:
 	void moveTo(const float x, const float y);
 	void update(const float time);
 	bool on_the_field();
+	int getTarget();
 	~Drawer();
 	Sprite& getSprite();
 	

@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include <iostream>
 Game::Game() {
 	windowSize.x = 1600;
 	windowSize.y = 900;
@@ -33,11 +33,12 @@ void Game::update() {
 	timer += time;	
 	this->enemy->update(time);
 	
-	
+	this->field->updatePercentage();
 	this->drawer->update(time);
 	if(this->drawer->on_the_field() == false)
 	          this->field->update(time);
 
+	std::cout << "\t\t\t\t" << this->field->getFieldPercentage() << std::endl;
 	
 }
 void Game::render() {

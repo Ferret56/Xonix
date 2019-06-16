@@ -7,13 +7,15 @@ Field::Field(){
 		field[i] = new pair<int, Plate*>[ROWS];
 	}
 	generateField();
+	this->fieldPercentage = 100;
 }
 
 void Field::draw(RenderWindow* window) {
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
-				if(field[i][j].first == Plate::FREE)
-				     window->draw(field[i][j].second->getSprite());						
+			if (field[i][j].first == Plate::FREE) 
+				window->draw(field[i][j].second->getSprite());
+			    
 			}
 		}	
 }
@@ -25,6 +27,20 @@ pair<int, Plate*> Field::getPlateByCoordinates(const int i, const int j) {
 pair<int, Plate*>** Field::getField() {
 	return field;
 }
+
+int Field::getFieldPercentage() { return this->fieldPercentage; }
+
+void Field::updatePercentage() {
+	int count = 0;
+	for (int i = 0; i < LINES; ++i) {
+		for (int j = 0; j < ROWS; ++j) {
+			if (field[i][j].first == Plate::FREE)
+				count++;
+		}
+	}
+	this->fieldPercentage = (count * 100) / ((ROWS * LINES) - (ROWS * 2 + LINES * 2 - 4));
+}
+
 
 
 

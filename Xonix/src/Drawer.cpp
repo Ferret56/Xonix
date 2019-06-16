@@ -8,11 +8,12 @@ Drawer::Drawer(const String path, Field& field){
 	this->image = new GraphicalShell(path);		
 	this->field = &field;
 	this->is_on_the_field = false;	
-	//this->image->getSprite().setOrigin(15, 10);
+	this->image->getSprite().setOrigin(15, 10);
+	this->target = 75;
 	x = 500;
 	y = 200;
 	dx = dy = 0;
-	speed = 0.1;
+	speed = 0.05;
 	setPosition(x, y);	
 }
 
@@ -50,8 +51,11 @@ void Drawer::update(const float time) {
 
 	x += dx  * time;
 	y += dy * time;
-	if (x < 0) x = 0;
-	if (y < 0) y = 0;
+	if (x <= 0) x = 0;
+	if (y <= 0) y = 0;
+	if (x >= 1500) x = 1500;
+	if (y >= 850) y = 850;
+ 	
 	
 	
 
@@ -59,16 +63,17 @@ void Drawer::update(const float time) {
 	setPosition(x, y);
 
 	pair<int, Plate*>** field = this->field->getField();
-	bool found_it = false;
+	bool found_it = false;	
 	for (int i = 0; i < LINES; ++i) {
-		for (int j = 0; j < ROWS; ++j) {
-			Vector2f vec = field[i][j].second->getSprite().getPosition();
-			if(this->image->getSprite().getGlobalBounds().contains(vec.x + 10 , vec.y + 10)){
-				field[i][j].first = Plate::CAPTURE;
-				found_it = true;
-				this->is_on_the_field = true;
-				//break;
-			}			
+		for (int j = 0; j < ROWS; ++j) {			
+				Vector2f vec = field[i][j].second->getSprite().getPosition();
+				if (this->image->getSprite().getGlobalBounds().contains(vec.x + 10, vec.y + 10)){
+					field[i][j].first = Plate::CAPTURE;
+					found_it = true;
+					this->is_on_the_field = true;				
+					//break;
+				
+			}
 		}
 	}
 	
@@ -80,6 +85,9 @@ void Drawer::update(const float time) {
 }
 
 bool Drawer::on_the_field() { return this->is_on_the_field; }
+
+int Drawer::getTarget() { return this->target; }
+
 
 
 
