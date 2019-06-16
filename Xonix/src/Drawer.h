@@ -15,6 +15,7 @@ private:
 	int          target;  // Àmount of field to be deleted(%)
 	
 	bool is_on_the_field;
+	bool is_win;
 public:
 	Drawer(const String path, Field& field);
 	void setPosition(const float x, const float y);
@@ -24,6 +25,7 @@ public:
 	int getTarget();
 	~Drawer();
 	Sprite& getSprite();
+	bool is_drawer_win();
 	
 
 

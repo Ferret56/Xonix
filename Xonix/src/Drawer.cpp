@@ -9,12 +9,13 @@ Drawer::Drawer(const String path, Field& field){
 	this->field = &field;
 	this->is_on_the_field = false;	
 	this->image->getSprite().setOrigin(15, 10);
-	this->target = 75;
-	x = 500;
-	y = 200;
+	this->target = 15;
+	x = 400;
+	y = 400;
 	dx = dy = 0;
-	speed = 0.05;
+	speed = 0.1;
 	setPosition(x, y);	
+	is_win = false;
 }
 
 void Drawer::setPosition(const float x, const float y){
@@ -76,9 +77,12 @@ void Drawer::update(const float time) {
 			}
 		}
 	}
-	
+
 	if (found_it == false)
 		this->is_on_the_field = false;
+
+	if (this->target == (100 - this->field->getFieldPercentage()))
+		is_win = true;
 	
 	//moveTo(x, y);
 
@@ -93,6 +97,9 @@ int Drawer::getTarget() { return this->target; }
 
 
 Sprite& Drawer::getSprite() { return this->image->getSprite(); }
+
+bool Drawer::is_drawer_win() { return this->is_win; }
+
 
 
 

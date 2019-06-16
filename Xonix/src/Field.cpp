@@ -70,7 +70,7 @@ void Field::generateField() {
 				status = Plate::BORDER;						
 			else
 				status = Plate::FREE;
-			field[i][j] = make_pair(status, new Plate("src/images/field/solid.png", x_position, y_position));			
+			field[i][j] = make_pair(status, new Plate("src/images/field/plate.png", x_position, y_position));			
 			x_position += 20;
 		}
 		x_position = 600;  

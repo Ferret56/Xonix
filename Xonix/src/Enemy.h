@@ -14,12 +14,15 @@ private:
 	Vector2f          dirVector;   //Vector of the direction
 	Field *           field;      //field 
 
+	bool is_alive;
+
 public:
 	Enemy(const String path,  Field& field);	
 	void setPosition(const float x, const float y);
 	void update(const float time);
 	void changeDirection(const float time);	
 	void moveTo(const float x, const float y);
+	bool is_enemy_alive();
 	~Enemy();
 	Sprite& getSprite();
 };

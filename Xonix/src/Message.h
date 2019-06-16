@@ -10,6 +10,8 @@ private:
 public:
 	Message(const String msg, const String path_to_the_font, const int size, const float x, const float y);
 	void setTextPosition(const float x, const float y);
+	void setText(const String msg);
+	void setSize(const int size);
 	void show(RenderWindow* window);
 
 

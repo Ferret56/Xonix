@@ -14,7 +14,8 @@ Enemy::Enemy(const String path, Field& field) {
 	dx = dy = -1;
 	/*dirVector.x = -0.9f;
 	dirVector.y = -1.2f;*/
-	setPosition(x, y);	
+	setPosition(x, y);
+	is_alive = true;
 }
 
 Enemy::~Enemy() {
@@ -42,7 +43,7 @@ void Enemy::update(const float time) {
 	}
 
 	if (field->getPlateByCoordinates(y, x).first == Plate::CAPTURE)
-		setPosition(0, 0);
+		is_alive = false;
 	
 }
 
@@ -57,6 +58,8 @@ void Enemy::changeDirection(const float time){
 void Enemy::moveTo(const float x, const float y) {
 	this->image->moveTo(600 + 20 * x, 200 + 20 * y);
 }
+
+bool Enemy::is_enemy_alive() { return this->is_alive; }
 
 
 	
