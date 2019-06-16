@@ -7,7 +7,9 @@ using namespace std;
 Drawer::Drawer(const String path, Field& field){
 	this->image = new GraphicalShell(path);		
 	this->field = &field;
-	x = 400;
+	this->is_on_the_field = false;	
+	//this->image->getSprite().setOrigin(15, 10);
+	x = 500;
 	y = 200;
 	dx = dy = 0;
 	speed = 0.1;
@@ -57,19 +59,27 @@ void Drawer::update(const float time) {
 	setPosition(x, y);
 
 	pair<int, Plate*>** field = this->field->getField();
+	bool found_it = false;
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
 			Vector2f vec = field[i][j].second->getSprite().getPosition();
 			if(this->image->getSprite().getGlobalBounds().contains(vec.x + 10 , vec.y + 10)){
 				field[i][j].first = Plate::CAPTURE;
-				break;
+				found_it = true;
+				this->is_on_the_field = true;
+				//break;
 			}			
 		}
 	}
 	
+	if (found_it == false)
+		this->is_on_the_field = false;
+	
 	//moveTo(x, y);
 
 }
+
+bool Drawer::on_the_field() { return this->is_on_the_field; }
 
 
 

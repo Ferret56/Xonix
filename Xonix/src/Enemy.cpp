@@ -40,10 +40,9 @@ void Enemy::update(const float time) {
 		dy = -dy;
 		setPosition(x, y + dy/10);
 	}
-	if (field->getPlateByCoordinates(y, x).first == Plate::CAPTURE) {
-		setPosition(0, 0);
-	}
 
+	if (field->getPlateByCoordinates(y, x).first == Plate::CAPTURE)
+		setPosition(0, 0);
 	
 }
 

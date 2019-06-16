@@ -30,13 +30,14 @@ void Game::update() {
 	time = clock.getElapsedTime().asMicroseconds();
 	clock.restart();
 	time = time / 500;
-	timer += time;
-	//if(timer > 150){
-		this->enemy->update(time);
-	//    timer = 0;
-	//}	
+	timer += time;	
+	this->enemy->update(time);
+	
+	
 	this->drawer->update(time);
-	this->field->update(time);
+	if(this->drawer->on_the_field() == false)
+	          this->field->update(time);
+
 	
 }
 void Game::render() {

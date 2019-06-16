@@ -33,7 +33,9 @@ void Field::update(const float time) {
 
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
-			
+			if (field[i][j].first == Plate::CAPTURE) {
+				field[i][j].first = Plate::BORDER;
+			}
 		}
 	}	
 }
