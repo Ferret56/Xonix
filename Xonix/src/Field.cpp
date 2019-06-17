@@ -1,12 +1,14 @@
 #include "Field.h"
 
 
-Field::Field(){
+Field::Field(const String path, const float x, const float y){
+	this->start_x = x;
+	this->start_y = y;
 	field = new pair<int, Plate*>*[LINES];
 	for (int i = 0; i < LINES; ++i) {
 		field[i] = new pair<int, Plate*>[ROWS];
 	}
-	generateField();
+	generateField(path,x,y);
 	this->fieldPercentage = 100;
 }
 
@@ -55,13 +57,9 @@ void Field::update(const float time) {
 	}	
 }
 
-
-
-/*1 for the border
-0 for the field*/
-void Field::generateField() {	
-	float x_position = 600;
-	float y_position = 200;
+void Field::generateField(const String path, const float x, const float y) {	
+	float x_position = x;
+	float y_position = y;
 	int status = Plate::FREE;
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
@@ -69,13 +67,12 @@ void Field::generateField() {
 				status = Plate::BORDER;						
 			else
 				status = Plate::FREE;
-			field[i][j] = make_pair(status, new Plate("src/images/field/plate.png", x_position, y_position));			
+			field[i][j] = make_pair(status, new Plate(path, x_position, y_position));			
 			x_position += 20;
 		}
-		x_position = 600;  
+		x_position = x;  
 		y_position += 20;
-	}
-	
+	}	
 }
 
 

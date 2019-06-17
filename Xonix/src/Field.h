@@ -13,10 +13,12 @@ class Field {
 private:	
 	pair<int, Plate*>     **field;
 	int                   fieldPercentage;
+	float                 start_x;
+	float                 start_y;
 	
 public:
-	Field();
-	void generateField();
+	Field(const String path,const float x, const float y);
+	void generateField(const String path, const float x, const float y);
 	void draw(RenderWindow* window);
 	pair <int, Plate*> getPlateByCoordinates(const int i, const int j);
 	pair<int, Plate*>** getField();

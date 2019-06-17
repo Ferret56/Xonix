@@ -3,8 +3,6 @@
 #include "time.h"
 #include <iostream>
 
-
-
 Enemy::Enemy(const String path, Field& field) {
 	this->image = new GraphicalShell(path);
 	this->field = &field;

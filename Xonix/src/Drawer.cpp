@@ -2,10 +2,6 @@
 #include "iostream"
 using namespace std;
 
-
-
-
-
 Drawer::Drawer(const String path, Field& field){
 	this->image = new GraphicalShell(path);		
 	this->field = &field;
@@ -98,7 +94,7 @@ int Drawer::getTarget() { return this->target; }
 
 Sprite& Drawer::getSprite() { return this->image->getSprite(); }
 
-bool Drawer::is_drawer_win() { return this->is_win; }
+bool Drawer::is_drawer_win() { return this->is_win;}
 
 
 
