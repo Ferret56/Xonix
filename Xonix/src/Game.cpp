@@ -29,7 +29,10 @@ void Game::processEvents() {
 			window->close();		
 		if (Keyboard::isKeyPressed(Keyboard::Enter))
 			is_start = true;
-		////TODO process events for drawer
+
+		this->drawer->processEvents();
+		
+
 	}
 }
 

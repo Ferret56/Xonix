@@ -4,12 +4,14 @@ using namespace std;
 
 
 
+
+
 Drawer::Drawer(const String path, Field& field){
 	this->image = new GraphicalShell(path);		
 	this->field = &field;
 	this->is_on_the_field = false;	
 	this->image->getSprite().setOrigin(15, 10);
-	this->target = 15;
+	this->target = 50;
 	x = 400;
 	y = 400;
 	dx = dy = 0;
@@ -30,35 +32,34 @@ void Drawer::moveTo(const float x, const float y) {
 	this->image->moveTo(x, y);
 }
 
-
-void Drawer::update(const float time) {	
-	
+void Drawer::processEvents() {
 	if (Keyboard::isKeyPressed(Keyboard::Right)) {
-		dx = speed;		
-		dy = 0;                                       //TODO process events for drawer
+		dx = speed;
+		dy = 0;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Left)) {
-		dx = -speed;		
+		dx = -speed;
 		dy = 0;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Up)) {
 		dx = 0;
-		dy = -speed;		
+		dy = -speed;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Down)) {
 		dx = 0;
-		dy = speed;		
+		dy = speed;
 	}
+}
 
+
+void Drawer::update(const float time){
 	x += dx  * time;
 	y += dy * time;
+
 	if (x <= 0) x = 0;
 	if (y <= 0) y = 0;
 	if (x >= 1500) x = 1500;
-	if (y >= 850) y = 850;
- 	
-	
-	
+	if (y >= 850) y = 850;	
 
 	std::cout << x <<"   "<< y << std::endl;	
 	setPosition(x, y);
@@ -72,8 +73,7 @@ void Drawer::update(const float time) {
 					field[i][j].first = Plate::CAPTURE;
 					found_it = true;
 					this->is_on_the_field = true;				
-					//break;
-				
+					//break;				
 			}
 		}
 	}
