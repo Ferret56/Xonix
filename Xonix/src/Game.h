@@ -10,13 +10,14 @@ using namespace sf;
 
 class Game {
 private:
-	RenderWindow* window;             //main window
-	Vector2f      windowSize;        //window size
-	Background*   background;       //background image
-	Drawer*       drawer;          //drawer
-	Field*        field;          //field
-	Enemy*        enemy;         //enemy
-	Message*      startMessage; //start message
+	RenderWindow* window;                  //main window
+	Vector2f      windowSize;             //window size
+	Background*   background;            //background image
+	Drawer*       drawer;               //drawer
+	Field*        field;               //field
+	Enemy*        enemy;              //enemy
+	Message*      startMessage;      //start message
+	Message*	  scoreInformation; //score message
 	
 
 	Clock clock;
@@ -38,6 +39,8 @@ public:
 
 	const String LOSE_MESSAGE = "\t\t Oh, you lost.I'm sorry.\n   Do not worry.Next time maybe";
 	const String WIN_MESSAGE = "\t  You are win!\n\tCongratulations";
+	String TARGET = "TARGET: ";
+	String SUCCESS = "SUCCESS: ";
 
 };
 

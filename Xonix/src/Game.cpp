@@ -10,6 +10,8 @@ Game::Game() {
 	enemy = new Enemy("src/images/drawers/enemy.png", *field);
 	String start = " Welcome to the game!.\nPress ENTER to start.";
 	startMessage = new Message(start, "src/fonts/Main.ttf", 100, 350, 300);
+	TARGET += std::to_string(this->drawer->getTarget()) + "%\n";
+	scoreInformation = new Message(Game::TARGET + Game::SUCCESS, "src/fonts/font.ttf", 50, 1200, 50);
 	is_start = false;
 	status = Game::NORMAL;
 }
@@ -17,7 +19,7 @@ Game::Game() {
 Game::~Game() {}
 
 void Game::processEvents() {
-	//TODO time
+	
 	Event event;
 	while (window->pollEvent(event))
 	{
@@ -27,7 +29,7 @@ void Game::processEvents() {
 			window->close();		
 		if (Keyboard::isKeyPressed(Keyboard::Enter))
 			is_start = true;
-
+		////TODO process events for drawer
 	}
 }
 
@@ -50,7 +52,10 @@ void Game::update() {
 			Game::status = Game::WIN;
 
 		if (!this->enemy->is_enemy_alive())
-			Game::status = Game::LOSE;
+			Game::status = Game::LOSE;	
+		
+		scoreInformation->setText(Game::TARGET + Game::SUCCESS + std::to_string(100 - this->field->getFieldPercentage()) + "%");
+		
 	
 }
 void Game::render() {
@@ -59,7 +64,8 @@ void Game::render() {
 	window->draw(background->getImage());
 	field->draw(window);
 	window->draw(enemy->getSprite());
-	window->draw(drawer->getSprite());		
+	window->draw(drawer->getSprite());	
+	scoreInformation->show(window);
 	window->display();
 }
 void Game::run() {
@@ -95,8 +101,6 @@ void Game::run() {
 			startMessage->show(window);
 			window->display();
 		}
-
-
 	}
 }
 Vector2f Game::getWindowSize() {

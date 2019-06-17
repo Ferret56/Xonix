@@ -9,11 +9,11 @@ Drawer::Drawer(const String path, Field& field){
 	this->field = &field;
 	this->is_on_the_field = false;	
 	this->image->getSprite().setOrigin(15, 10);
-	this->target = 50;
+	this->target = 15;
 	x = 400;
 	y = 400;
 	dx = dy = 0;
-	speed = 0.1;
+	speed = 0.05;
 	setPosition(x, y);	
 	is_win = false;
 }
@@ -35,7 +35,7 @@ void Drawer::update(const float time) {
 	
 	if (Keyboard::isKeyPressed(Keyboard::Right)) {
 		dx = speed;		
-		dy = 0;
+		dy = 0;                                       //TODO process events for drawer
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Left)) {
 		dx = -speed;		

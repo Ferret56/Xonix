@@ -14,8 +14,7 @@ void Field::draw(RenderWindow* window) {
 	for (int i = 0; i < LINES; ++i) {
 		for (int j = 0; j < ROWS; ++j) {
 			if (field[i][j].first == Plate::FREE) 
-				window->draw(field[i][j].second->getSprite());
-			    
+				window->draw(field[i][j].second->getSprite());			    
 			}
 		}	
 }
