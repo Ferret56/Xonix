@@ -13,6 +13,4 @@ public:
 	void setText(const String msg);
 	void setSize(const int size);
 	void show(RenderWindow* window);
-
-
 };

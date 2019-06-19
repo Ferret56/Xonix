@@ -8,7 +8,7 @@ using namespace std;
 #define LINES 25
 #define ROWS 17
 
-class Field {
+class Field{
 private:	
 	pair<int, Plate*>     **field;
 	int                   fieldPercentage;

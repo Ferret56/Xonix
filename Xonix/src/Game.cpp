@@ -1,5 +1,6 @@
 #include "Game.h"
-#include <iostream>
+
+//Standart constructor to initialize variables
 Game::Game() {
 	windowSize.x = 1600;
 	windowSize.y = 900;
@@ -16,58 +17,56 @@ Game::Game() {
 	status = Game::NORMAL;
 }
 
+//Standart desctructor to destroy variables	
 Game::~Game() {
 	delete this->window;
 	delete this->background;
-	//delete this->drawer;
+	delete this->drawer;
 	delete this->field;
-	//delete this->enemy;
+	delete this->enemy;
 	delete this->startMessage;
 	delete this->scoreInformation;
 }
 
+//handle events
 void Game::processEvents() {	
 	Event event;
-	while (window->pollEvent(event))
-	{
+	while (window->pollEvent(event)){	
 		if (event.type == sf::Event::Closed)
 			window->close();
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 			window->close();		
 		if (Keyboard::isKeyPressed(Keyboard::Enter))
 			is_start = true;
-
-		this->drawer->processEvents();
+		
+		this->drawer->processEvents();   //handle drawer events
 	}
 }
 
+//update the game logic
 void Game::update() {
-
      	time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
 		time = time / 800;
 		this->enemy->update();
-
 		this->field->updatePercentage();
 		this->drawer->update(time);
 		if (this->drawer->on_the_field() == false)
 			this->field->update(time);
-
-		std::cout << "\t\t\t\t" << this->field->getFieldPercentage() << std::endl;
 
 		if (this->drawer->is_drawer_win())
 			Game::status = Game::WIN;
 
 		if (!this->enemy->is_enemy_alive())
 			Game::status = Game::LOSE;	
-		
-		scoreInformation->setText(Game::TARGET + Game::SUCCESS + std::to_string(100 - this->field->getFieldPercentage()) + "%");
-		
-	
+
+		scoreInformation->setText(Game::TARGET + Game::SUCCESS + 
+			 std::to_string(100 - this->field->getFieldPercentage()) + "%");	
 }
+
+//drawing graphics
 void Game::render() {
-	window->clear();
-	//TODO
+	window->clear();	
 	window->draw(background->getImage());
 	field->draw(window);
 	window->draw(enemy->getSprite());
@@ -75,6 +74,8 @@ void Game::render() {
 	scoreInformation->show(window);
 	window->display();
 }
+
+//run the game
 void Game::run() {
 	while (window->isOpen()) {
 		processEvents();
@@ -110,6 +111,7 @@ void Game::run() {
 		}
 	}
 }
+//getter or the window size
 Vector2f Game::getWindowSize() {
 	return windowSize;
 }

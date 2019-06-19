@@ -5,33 +5,33 @@
 #include "Field.h"
 #include "Enemy.h"
 #include "Message.h"
-
 using namespace sf;
 
+/*The main class that contains all the game elements*/
 class Game {
 private:
-	RenderWindow* window;                  //main window
-	Vector2f      windowSize;             //window size
-	Background*   background;            //background image
-	Drawer*       drawer;               //drawer
-	Field*        field;               //field
-	Enemy*        enemy;              //enemy
-	Message*      startMessage;      //start message
-	Message*	  scoreInformation; //score message
+	RenderWindow* window;                   //main window
+	Vector2f      windowSize;              //window size
+	Background*   background;             //background image
+	Drawer*       drawer;                //drawer
+	Field*        field;                //field
+	Enemy*        enemy;               //enemy
+	Message*      startMessage;       //start message
+	Message*      scoreInformation;  //score message
 	
 
-	Clock clock;
-	float time;
-	float timer;
-
-	bool is_start;
+	Clock clock;                    //Clock(SFML library)
+	float time;                    // time(for timing)
 	
-	void processEvents();
-	void update();
-	void render();
+
+	bool is_start;                //Has the game started?
+	
+	void processEvents();        //event handling
+	void update();              //gameplay update
+	void render();             //drawing
 
 public:	
-	Game();
+	Game();                                 
 	~Game();
 	void run();	
 	Vector2f getWindowSize();
