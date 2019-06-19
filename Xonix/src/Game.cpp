@@ -3,7 +3,7 @@
 Game::Game() {
 	windowSize.x = 1600;
 	windowSize.y = 900;
-	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix", Style::Fullscreen);	
+	window = new RenderWindow(VideoMode(windowSize.x, windowSize.y), "Xonix");	
 	background = new Background("src/images/background/space1.png");
 	field = new Field("src/images/field/plate.png",600,200);
 	drawer = new Drawer("src/images/drawers/bird1.png",*field);	
@@ -16,10 +16,17 @@ Game::Game() {
 	status = Game::NORMAL;
 }
 
-Game::~Game() {}
+Game::~Game() {
+	delete this->window;
+	delete this->background;
+	//delete this->drawer;
+	delete this->field;
+	//delete this->enemy;
+	delete this->startMessage;
+	delete this->scoreInformation;
+}
 
-void Game::processEvents() {
-	
+void Game::processEvents() {	
 	Event event;
 	while (window->pollEvent(event))
 	{
@@ -31,18 +38,15 @@ void Game::processEvents() {
 			is_start = true;
 
 		this->drawer->processEvents();
-		
-
 	}
 }
 
-void Game::update() {	
+void Game::update() {
 
-		time = clock.getElapsedTime().asMicroseconds();
+     	time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
-		time = time / 500;
-		timer += time;
-		this->enemy->update(time);
+		time = time / 800;
+		this->enemy->update();
 
 		this->field->updatePercentage();
 		this->drawer->update(time);

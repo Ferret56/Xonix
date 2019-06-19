@@ -20,8 +20,7 @@ private:
 	
 public:
 	Drawer(const String path, Field& field);
-	void setPosition(const float x, const float y);
-	void moveTo(const float x, const float y);
+	void setPosition(const float x, const float y);	
 	void update(const float time);
 	void processEvents();
 	bool on_the_field();

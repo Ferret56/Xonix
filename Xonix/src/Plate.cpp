@@ -9,6 +9,9 @@ Plate::Plate(const String path, const float x, const float y){
 	this->status = FREE;
 }
 
+Plate::~Plate() { delete this->image; }
+
+
 Sprite Plate::getSprite() {
 	return this->image->getSprite();
 }

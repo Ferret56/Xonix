@@ -6,30 +6,28 @@
 Enemy::Enemy(const String path, Field& field) {
 	this->image = new GraphicalShell(path);
 	this->field = &field;
-	x = 15;
-	y = 23;
-	speed = 0.04;
-	dx = dy = -1;
-	/*dirVector.x = -0.9f;
-	dirVector.y = -1.2f;*/
+	x = ROWS - 2;
+	y = LINES - 2;	
+	dx = dy = -1;	
 	setPosition(x, y);
 	is_alive = true;
 }
 
 Enemy::~Enemy() {
 	delete this->image;
+	delete this->field;
 }
 
 
-void Enemy::setPosition(const float x1, const float y1) {
-	this->image->setPosition(600 + 20 * x1, 200 + 20 * y1);
+void Enemy::setPosition(const float x1, const float y1){
+	this->image->setPosition(field->getStartX() + 20 * x1, field->getStartY() + 20 * y1);
 	this->x = x1;
 	this->y = y1;	
 }
 
-void Enemy::update(const float time) {	
-	setPosition(x + dx/10, y);
-	std::cout << "\t\t" << x << " " << y << std::endl;
+void Enemy::update(){
+	setPosition(x + dx/10 , y);
+
 	if (field->getPlateByCoordinates(y, x).first == Plate::BORDER) {
 		dx = -dx;
 		setPosition(x + dx/10, y);
@@ -39,33 +37,11 @@ void Enemy::update(const float time) {
 		dy = -dy;
 		setPosition(x, y + dy/10);
 	}
-
 	if (field->getPlateByCoordinates(y, x).first == Plate::CAPTURE)
 		is_alive = false;
-	
-}
-
-
-
-
-void Enemy::changeDirection(const float time){		
-	//dirVector.x = -dirVector.x;
-	//dirVector.y = 1;
-}
-
-void Enemy::moveTo(const float x, const float y) {
-	this->image->moveTo(600 + 20 * x, 200 + 20 * y);
 }
 
 bool Enemy::is_enemy_alive() { return this->is_alive; }
-
-
-	
-
-
-
-Sprite& Enemy::getSprite() {
-	return this->image->getSprite();
-}
+Sprite& Enemy::getSprite() {return this->image->getSprite();}
 
 

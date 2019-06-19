@@ -25,11 +25,17 @@ pair<int, Plate*> Field::getPlateByCoordinates(const int i, const int j) {
 	return this->field[i][j];
 }
 
-pair<int, Plate*>** Field::getField() {
+pair<int, Plate*>** Field::getField(){
 	return field;
 }
 
 int Field::getFieldPercentage() { return this->fieldPercentage; }
+
+int Field::getStartX() { return this->start_x; }
+
+int Field::getStartY(){return this->start_y;}
+
+
 
 void Field::updatePercentage() {
 	int count = 0;

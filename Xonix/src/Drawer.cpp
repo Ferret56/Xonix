@@ -7,25 +7,24 @@ Drawer::Drawer(const String path, Field& field){
 	this->field = &field;
 	this->is_on_the_field = false;	
 	this->image->getSprite().setOrigin(15, 10);
-	this->target = 50;
-	x = 400;
-	y = 400;
+	this->target = 10;
+	x = field.getStartX() - 200;
+	y = field.getStartY() + 200;
 	dx = dy = 0;
-	speed = 0.05;
+	speed = 0.09;
 	setPosition(x, y);	
 	is_win = false;
+}
+
+Drawer::~Drawer() {
+	delete this->image;
+	delete this->field;
 }
 
 void Drawer::setPosition(const float x, const float y){
 	this->x = x;
 	this->y = y;
 	this->image->setPosition(x, y);
-}
-
-void Drawer::moveTo(const float x, const float y) {
-	this->x = x;
-	this->y = y;
-	this->image->moveTo(x, y);
 }
 
 void Drawer::processEvents() {
@@ -47,7 +46,6 @@ void Drawer::processEvents() {
 	}
 }
 
-
 void Drawer::update(const float time){
 	x += dx  * time;
 	y += dy * time;
@@ -55,9 +53,8 @@ void Drawer::update(const float time){
 	if (x <= 0) x = 0;
 	if (y <= 0) y = 0;
 	if (x >= 1500) x = 1500;
-	if (y >= 850) y = 850;	
+	if (y >= 850) y = 850;
 
-	std::cout << x <<"   "<< y << std::endl;	
 	setPosition(x, y);
 
 	pair<int, Plate*>** field = this->field->getField();
@@ -68,8 +65,7 @@ void Drawer::update(const float time){
 				if (this->image->getSprite().getGlobalBounds().contains(vec.x + 10, vec.y + 10)){
 					field[i][j].first = Plate::CAPTURE;
 					found_it = true;
-					this->is_on_the_field = true;				
-					//break;				
+					this->is_on_the_field = true;							
 			}
 		}
 	}
@@ -79,21 +75,12 @@ void Drawer::update(const float time){
 
 	if (this->target == (100 - this->field->getFieldPercentage()))
 		is_win = true;
-	
-	//moveTo(x, y);
-
 }
 
 bool Drawer::on_the_field() { return this->is_on_the_field; }
 
-int Drawer::getTarget() { return this->target; }
-
-
-
-
-
-Sprite& Drawer::getSprite() { return this->image->getSprite(); }
-
+int Drawer::getTarget() { return this->target;}
+Sprite& Drawer::getSprite() { return this->image->getSprite();}
 bool Drawer::is_drawer_win() { return this->is_win;}
 
 
